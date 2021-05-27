@@ -1,11 +1,12 @@
 id,name,description,assignedto,duedate,status
-=>,Task Manager,Credit To,Team 1@FEWD1,2021-05-28,Confirmed
-A,Task Functions & LoginPage,CRUD functions,Victor,2021-05-28,Confirmed
-B,IndexPage,Re-model and components,Roy,2021-05-28,Confirmed
-C,RWS and CSS-Styling,Login Validation,Salin,2021-05-28,Confirmed
-1,salin,MV shooting,Keung Too,2021-06-30,Review
-1,Fa jer,Photo shooting,Error,2021-04-28,To Do
-1,Fa jer,MV Shooting,Dee Gor,2021-06-18,Review
-1,Tom,23,23,2021-05-12,Done
-1,Sun,7,7,2021-05-05,To Do
-1,Jesus,8,8,2021-05-28,To Do
+=>,Task Manager,Credit To,Team 1@FEWD1,2021-05-28,To Do
+A,Task Functions & LoginPage,CRUD functions,Victor,2021-05-28,To Do
+B,IndexPage,Re-model and components,Roy,2021-05-28,To Do
+C,RWS and CSS-Styling,Login Validation,Salin,2021-05-28,To Do
+
+
+0,養蟹,記錄水質數據,Kevin,2022-05-19,In Progress
+1,web design,startup company, Jesus,2021-04-02,To Do
+2,toy design, car structure ,Jesus,2021-04-02,Review
+3,UX design, complain solving,Jesus,2021-05-06,Done
+4,養蟹,記錄水質數據,Kevin,2022-05-19,In Progress
