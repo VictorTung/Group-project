@@ -1,5 +1,5 @@
-////test 
-console.log("testt")
+////test
+console.log("test")
 
 
 
@@ -18,10 +18,14 @@ const getExecute = async (e) => {
   const data = await fetch('http://localhost:8080/todolist')
   const jsonResponse = await data.json()
   jsonResponse.forEach(data => dataArray.push(data))
+  displayData(jsonResponse);
+}
+
+const displayData = (inputDataArray) => {
   let displayhtml =  `
-<tbody id="tableBody">
-</tbody>`;
-  for (let i of jsonResponse){
+  <tbody id="tableBody">
+  </tbody>`;
+  for (let i of inputDataArray){
       displayhtml = displayhtml +
       `
       <tr >
@@ -31,10 +35,10 @@ const getExecute = async (e) => {
           <td class="assignedto">${i.assignedto}</td>
           <td class="duedate">${i.duedate}</td>
           <td class="status">${i.status}</td>
-          <td class="edition d-flex justify-content-around">
-          <button type="button"  class="btn btn-primary edit  "  onclick="prePutExecution(${i.id})" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i></button>
+         <td class="edition d-flex justify-content-around">
+          <button type="button"  class="btn btn-primary  edit  "  onclick="prePutExecution(${i.id})" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pen"></i></button>
           <button type="button"  class="btn btn-danger  delete"  onclick="delExecute(${i.id})"   ><i class="fas fa-trash-alt"></i></button>
-          </td>
+          </td> 
       </tr>
       `
   }
@@ -72,18 +76,18 @@ const getExecute = async (e) => {
 const postExecute = async (event) => {
   event.preventDefault();
   /////////////////////// checking empty blank field
-  if(document.querySelector('#name').value && 
+  if(document.querySelector('#name').value &&
      document.querySelector('#description').value &&
-     document.querySelector('#assignedto').value && 
-     document.querySelector('#duedate').value && 
-     document.querySelector('#status').value) 
+     document.querySelector('#assignedto').value &&
+     document.querySelector('#duedate').value &&
+     document.querySelector('#status').value)
      {
 
     ///////////////////////create variable
     const formObject = {};
     let idToPost;
 
-    ///////////////////////create non-repeated id 
+    ///////////////////////create non-repeated id
     idArray = [];
     dataArray.map(element => {
       idArray.push(element.id)
@@ -129,11 +133,11 @@ const postExecute = async (event) => {
 const putExecute = async (event) => {
   const id = event.target.id;
   const formObject = {};
-  formObject['name'] = document.querySelector('#name').value;
+  formObject['name']        = document.querySelector('#name').value;
   formObject['description'] = document.querySelector('#description').value;
-  formObject['assignedto'] = document.querySelector('#assignedto').value;
-  formObject['duedate'] = document.querySelector('#duedate').value;
-  formObject['status'] = document.querySelector('#status').value;
+  formObject['assignedto']  = document.querySelector('#assignedto').value;
+  formObject['duedate']     = document.querySelector('#duedate').value;
+  formObject['status']      = document.querySelector('#status').value;
 
   const response = await fetch(`http://localhost:8080/todolist/` + id, {
       method: 'PUT',
@@ -155,7 +159,7 @@ const putExecute = async (event) => {
     let jsonResponse = await response.json();
     getExecute();
   }
-  
+
 ////////////////////////// 4 method execution //////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////// GET execution
@@ -215,14 +219,14 @@ const showAndHideButton = () => {
 document.getElementById('sidebarToggle').addEventListener('click', showAndHideButton)
 
 ////////////////////////// taskAddButton function and execution ////////////////////////////////////////////////////
-const taskAddButton = document.querySelector('#taskAddButton' && '#taskAddButton2') 
-taskAddButton.addEventListener('click', () => {
+const taskAddButton = document.querySelector('#taskAddButton' && '#taskAddButton2')
+      taskAddButton.addEventListener('click', () => {
   document.querySelector('#name').value = ""
   document.querySelector('#description').value = ""
   document.querySelector('#assignedto').value = ""
   document.querySelector('#duedate').value = ""
   document.querySelector('#status').value = ""
-  
+
   document.querySelector('#submitForm').style.display = "block";
   document.querySelector('.updateBtn').style.display = "none";
 }
@@ -238,21 +242,119 @@ function progressBarShow(divId, element) {
 
 }
 
+//////////////////////////// filter function //////////////////////////////////////
+ //Table---Filter ////
+ $("input:checkbox:not(:checked)").each(function() {
+   var column = "tr ." + $(this).attr("name");
+   $(column).hide();
+ });
 
+ $("input:checkbox").click(function(){
+   var column = "tr ." + $(this).attr("name");
+   $(column).toggle();
+ });
 
+////////////////////////// searching
+const charactersList = document.getElementById('showToDoList');
+const searchBar = document.querySelectorAll('.searchBar');
 
-//Table---Filter ////
-$("input:checkbox:not(:checked)").each(function() {
-  var column = "tr ." + $(this).attr("name");
-  $(column).hide();
+$('#checkbox-value').text($('#checkbox1').val());
+
+$("#checkbox1").on('change', function() {
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'true');
+  } else {
+    $(this).attr('value', 'false');
+  }
+  
+  $('#checkbox-value').text($('#checkbox1').val());
 });
 
-$("input:checkbox").click(function(){
-  var column = "tr ." + $(this).attr("name");
-  $(column).toggle();
-});
+// const searchBarTwo = document.getElementById('searchBar2');
 
+// const filter = (e) => {
+//   const searchString = e.target.value.toLowerCase();
+//   const infoArray = ["id", "name", "description", "assignedto", "duedate", "status"]
+//   const storageArray = [];
 
+//   // searchBar.length
 
+//   for (let i = 0; i < 3; i++) {
+//     let input = searchBar[i].value.toLowerCase();
+//     let info = infoArray[i]
 
-//https://flaviocopes.com/how-to-add-event-listener-multiple-elements-javascript/ multiple element with same event
+//     if (storageArray.length == 0) {
+//       const filteredData = dataArray.filter(data => {
+//         data[info].toLowerCase().includes(input)
+//       })
+//       filteredData.forEach(element => {
+//         if (storageArray.includes(element)){
+//         } else {
+//           storageArray.push(element)
+//         }
+//       })
+//     } else {
+
+//     }
+//     };
+//     displayData(storageArray)
+
+//     if (storageArray == []) {
+//       displayData(dataArray)
+//     } else {
+//       displayData(storageArray);
+//     }
+// }
+
+// const filter1 = (e) => {
+//     const searchString = e.target.value.toLowerCase();
+
+//     const filteredData = dataArray.filter((data) => {
+//         return (
+//             data.id.toLowerCase().includes(searchString)
+//         );
+//     });
+//     displayData(filteredData);
+// };
+
+// const filter2 = (e) => {
+//     const searchString = e.target.value.toLowerCase();
+
+//     const filteredData = dataArray.filter((data) => {
+//         return (
+//             data.name.toLowerCase().includes(searchString)
+//         );
+//     });
+//     displayData(filteredData);
+// };
+
+const filter3 = (e) => {
+    const searchString = e.target.value.toLowerCase();
+
+    const filteredData = dataArray.filter((data) => {
+        return (
+            data.id.toLowerCase().includes(searchString) ||
+            data.name.toLowerCase().includes(searchString) ||
+            data.description.toLowerCase().includes(searchString) ||
+            data.assignedto.toLowerCase().includes(searchString) ||
+            data.duedate.toLowerCase().includes(searchString) ||
+            data.status.toLowerCase().includes(searchString)
+        );
+    });
+    displayData(filteredData);
+};
+
+// for (let i = 0; i < searchBar.length; i++) {
+//   searchBar[i].addEventListener("keyup", filter);
+//   };
+
+for (let i = 0; i < searchBar.length; i++) {
+  searchBar[i].addEventListener("keyup", filter3);
+  };
+
+if (searchBar.value = "") {
+  getExecute();
+}
+
+// https://www.cssscript.com/minimal-table-filtering/     //filter function
+//https://flaviocopes.com/how-to-add-event-listener-multiple-elements-javascript/   // multiple element with same event

@@ -5504,9 +5504,14 @@ textarea.form-control-lg {
     margin-left: auto;
     margin-right: auto;
     align-items: center;
+    max-height: 500px;
   }
 
-
+  .checkbox6,
+  .checkbox5,
+  .checkbox3 {
+    display: none;
+  }
 
 
   .container-fluid {

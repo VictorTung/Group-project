@@ -1,0 +1,278 @@
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+/* main */
+* 
+{ 
+    margin:0;
+    padding:0;
+    
+ 
+  }
+
+body
+ {
+    width: auto;
+    font-family: 'Poppins', sans-serif;
+    background: #e5e5dc;
+    font-size: 16px;
+    height: 100%;
+    font-weight: 500;
+    
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+.container {
+}
+
+/* ---------------------------------------------------
+    Test
+----------------------------------------------------- */
+
+#taskAddButton {
+    position: sticky;
+    bottom: 0px;
+}
+
+
+/* ---------------------------------------------------
+Test end
+----------------------------------------------------- */
+
+/* ---------------------------------------------------
+Test sccess
+----------------------------------------------------- */
+.updateBtn {
+    display: none;
+}
+/* ---------------------------------------------------
+Test sccess end
+----------------------------------------------------- */
+
+/* ---------------------------------------------------
+    Task Adding
+----------------------------------------------------- */
+#progressBar {
+    display: none;
+}
+
+
+/* ---------------------------------------------------
+    Task Adding end
+----------------------------------------------------- */
+
+/* ---------------------------------------------------
+    left navbar style
+----------------------------------------------------- */
+
+#sidebar {
+    width: 0px;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    padding-left: 20px;
+    font-size: 22px;
+    color: white;
+    background-color: #26495c;
+}
+
+
+#sidebarHeader {
+    text-align: center;
+}
+
+
+#sidebarul li {
+    padding: 30px 0px;
+}
+
+#sidebarul a {
+    color: white;
+}
+
+#showAndHideButton {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    border-radius: 0% 30% 30% 0%;
+    padding: 10px;
+    padding-right: 12px;
+    color: white;
+    background-color: #26495c;
+}
+
+@media (max-width: 768px) {
+    #sidebar ul {
+        text-align: center;
+        font-size: 40px;
+    }
+
+    #sidebar span{
+        display: none;
+    }
+}
+
+
+
+/* ---------------------------------------------------
+    left sidebar style end
+----------------------------------------------------- */
+
+
+
+/* ---------------------------------------------------
+    top bar style
+----------------------------------------------------- */
+#topbar {
+    height: 100px;
+    padding-left: 130px;
+}
+
+
+
+div.item {
+    margin: 0px 20px;
+    border: 1px solid rgba(193, 214, 6, 0.667);
+    border-radius: 8%;
+    text-align: center;
+}
+
+#rightSide {
+    position: relative; /* for button attach to sidebar right side */
+    background-color:#c1a354;
+}
+
+#mainContent {
+    padding-top: 100px;
+    
+    
+}
+
+/* topbar  */
+#dropdownMenuLink {
+    margin-right:23px;
+    width: 100%;
+    align-items: center;
+  
+  }
+
+
+@media only screen and (max-width: 768px) {
+    #topbar {
+    height: 80px;
+    padding-left: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.topBarText {
+    display: none;
+}
+}
+
+/* ---------------------------------------------------
+    top bar style end
+----------------------------------------------------- */
+
+
+
+    
+/* ---------------------------------------------------
+    data summary
+----------------------------------------------------- */
+section#data {
+    margin-bottom: 40px;
+}
+
+#data .item {
+    padding: 5px;
+}
+
+#data .item div {
+    padding: 10px;
+}
+
+#data .item .icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.icon svg {
+    margin: 7px;
+}
+
+@media only screen and (max-width: 768px) {
+    #data .title {
+        display: none;
+}
+    Table  {
+        max-height: 300px;       
+    }
+
+    Table  tbody {
+        max-height: 300px;       
+    }
+
+}
+
+/* ---------------------------------------------------
+    data summary end
+----------------------------------------------------- */
+
+
+/* ---------------------------------------------------
+    Task Add Button
+----------------------------------------------------- */
+
+
+/* ---------------------------------------------------
+    Task Add Button end
+----------------------------------------------------- */
+
+
+
+
+/* ---------------------------------------------------
+    content table
+----------------------------------------------------- */
+section#contentTable {
+    margin-top: 40x;
+    
+}
+
+.progress-bar {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #007bff;
+    -webkit-transition: width .6s ease;
+    transition: width .6s ease;
+  }
+
+/* ---------------------------------------------------
+    content table end
+----------------------------------------------------- */
+
+
+/* test test test test test test test test test test test test test test */
+
+
