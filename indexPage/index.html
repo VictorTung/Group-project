@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="sortable.min.css" />
+        <title>Task Manager</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+          <!--Font-Awesome JS CDN???????????????--> 
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" 
+          integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
+          <!--Font Style & Material Icons--> 
+         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+          <!-- Bootstrap CSS -->
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+          <!-- Google Fonts -->
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+          <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+          <!--Self-Own CSS-->  
+          <link href="css/styles.css" rel="stylesheet" />
+    </head>
+
+
+
+    <body class="sb-nav-fixed">
+        
+        <!--Top Navbar Section-->
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.html"><h3 class="d-flex align-self-center"><span><i class="fas fa-jedi fa-2x"></i>ZEN</span></h3></a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" id="myInput" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" 
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-envelope-open-text "></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end topnav-notifications" aria-labelledby="navbarDropdown">
+
+                        <li><a rel="nofollow" href="#" class="dropdown-item">
+                            <div class="notification">
+
+                              <div class="notification-content">
+                                  <i class="fa fa-envelope bg-green"></i>You have 6 new emails </div>
+                              <div class="notification-time"><small>4 minutes ago</small></div>
+                            </div>
+                            </a>
+                        </li>
+                            
+                            <li><a rel="nofollow" href="#" class="dropdown-item">
+                                <div class="notification"> 
+                                  <div class="notification-content"><i class="fab fa-facebook-messenger bg-blue"></i>You have 3 new messages</div>
+                                  <div class="notification-time"><small>4 minutes ago</small></div>
+                                </div></a></li>
+                            <li><a rel="nofollow" href="#" class="dropdown-item">
+                                <div class="notification">
+                                  <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server Rebooted</div>
+                                  <div class="notification-time"><small>8 minutes ago</small></div>
+                                </div></a></li>
+                            <li><a rel="nofollow" href="#" class="dropdown-item">
+                                <div class="notification">
+                                  <div class="notification-content"><i class="fab fa-twitter bg-blue"></i>You have 2 followers</div>
+                                  <div class="notification-time"><small>10 minutes ago</small></div>
+                                </div></a></li><br>
+                            <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+                <!--Filter -->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-filter fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Sorting</a></li>
+                        <li><a class="dropdown-item" href="#!" onclick="hideDataRow()" >Filter</a></li>                       
+                    </ul>
+                </li>
+            </ul>
+                <!--Personal Setting-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="../logInPage\loginpage.html">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>           
+                <!--Top Navbar Section Ends-->
+        </nav>
+
+                <!--Side Navbar Section -->
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading fs-5">Core</div>
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Queues
+                            </a><hr>
+
+                            <div class="sb-sidenav-menu-heading fs-5">Workplace</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Task Create
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" id="taskAddButton2" href="#myModal" data-toggle="modal" data-target="#exampleModal"><span><i class="far fa-plus-square mr-2"></i>Add Task</span></a>
+                                </nav>
+                            </div>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Settings
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a><hr>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                        Authentication
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href=".\logInPage\loginpage.html">Login</a>                                         
+                                        </nav>
+                                    </div>                                
+                                </nav>
+                            </div>
+
+                            <div class="sb-sidenav-menu-heading fs-5">Others</div>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Contact
+                            </a>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Issue report
+                            </a>
+                        </div>
+                    </div>
+                 </nav>
+            </div>
+                <!--Side Navbar Section Ends -->
+
+                <!--Main Content/Container Section-->
+            <div id="layoutSidenav_content">
+
+                <!--4 Tasks Report Cards Section-->
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Dashboard</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active ">Task Manager</li>
+                    </ol>
+                    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-danger text-white mb-4">
+                                
+                                <div class="card-body">
+                                    <div class="icon bg-danger"><i class="fab fa-readme"></i></div>
+                                    To Do</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="number"><strong><span id="toDo" class='numbercounter'>noServer</span></strong></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">
+                                    <div class="icon bg-warning"><i class="fas fa-spinner"></i></div>
+                                    In Progress</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="number"><strong><span id="inProgress" class='numbercounter'>noServer</span></strong></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-info text-white mb-4">
+                                <div class="card-body">
+                                    <div class="icon bg-info"><i class="fas fa-check-circle"></i></div>
+                                    Done</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="number"><strong><span id="done" class='numbercounter'>noServer</span></strong></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-body">
+                                    <div class="icon bg-success"><i class="fas fa-search"></i></div>
+                                    Review</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="number"><strong><span id="review" class='numbercounter'>noServer</span></strong></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                        <!--4 Tasks Report Cards Section Ends-->
+
+                                <!-- Content table Section-->
+                <div class="card mb-4 ">
+                    <div class="card-header">
+                        
+                        <i class="fas fa-table me-1"></i>
+                        Team 1 Task-Table              
+                        
+
+                       <!--Table Filter-->
+                        <div id="checkbox_div">
+                            <p>Filter Column</p>
+                            <ul class="d-flex justify-content-around">
+                            <li><input type="checkbox" value="hide" name="id">              Task Id</li>
+                            <li><input type="checkbox" value="hide" name="name">            Project</li>
+                            <li><input type="checkbox" value="hide" name="description">     Task Description</li>
+                            <li><input type="checkbox" value="hide" name="assignedto">      Assigned Staff</li>
+                            <li><input type="checkbox" value="hide" name="duedate">         Due Date</li>
+                            <li><input type="checkbox" value="hide" name="status">          Status</li>
+                            </ul>
+                            
+                           </div>
+                    </div>
+                    
+                    <div class="card-body">
+                        <table id="myTable" class="table table-bordered w-md 
+                                                   table-hover table-sort 
+                                                   border-dark border-2
+                                                   table-striped 
+                                                   table-responsive-xl 
+                                                   sortable   ">
+                            <thead>
+                                <tr class="table-dark">
+                                    <th  style="width:5%;"  name="id         " class="id               js-sort-table  border border-secondary th-sm  "            data-sortable="true">Task ID</th>
+                                    <th  style="width:20%;" name="name       " class="name             js-sort-table  border border-secondary th-sm "             data-sortable="true">Project</th>
+                                    <th  style="width:20%;" name="description" class="description      js-sort-table  border border-secondary th-sm  "            data-sortable="true">Task Description</th>
+                                    <th  style="width:15%;" name="assignedto " class="assignedto       js-sort-table  border border-secondary th-sm"              data-sortable="true">Assigned To</th>
+                                    <th  style="width:15%;" name="duedate    " class="duedate          js-sort-table  border border-secondary th-sm"              data-sortable="true">Due Date</th>
+                                    <th  style="width:10%;" name="status     " class="status           js-sort-table  border border-secondary th-sm "             data-sortable="true">Status</th>
+                                    <th  style="width:15%;" name="edition    " class="edition          js-sort-table  border border-secondary th-sm text-center " data-sortable="true" colspan="2">Task Edition</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="showToDoList" class=" ">
+                                <tr class="">
+                                    <td class="id           align-bottom js-sort-table   border-info d-none d-md-table-cell" data-sortable="true">Task ID</td>
+                                    <td class="name         align-bottom js-sort-table   border-info                       " data-sortable="true">Project</td>
+                                    <td class="description  align-bottom js-sort-table   border-info d-none d-md-table-cell" data-sortable="true">Task Description</td>
+                                    <td class="assignedto   align-bottom js-sort-table   border-info                       " data-sortable="true">Assigned To</td>
+                                    <td class="duedate      align-bottom js-sort-table   border-info                       " data-sortable="true">Due Date</td>
+                                    <td class="status       align-bottom js-sort-table   border-info                       " data-sortable="true">Status</td>
+                                    <td class="edition      align-bottom js-sort-table   border-info                       " data-sortable="true" colspan="2">Task Edit</td>
+                                </tr>                                      
+                            </tbody>
+                        </table>
+                    </div>
+                </div>                                
+                    <!-- Content Table Section Ends-->
+                    
+                    <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Task Adding</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <form name="submitToDataBase">
+                                <div class="modal-body d-flex flex-column">
+                                    <div>
+                                        <label for="name">Task</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Task Name" required>
+                                    </div>
+                                    <div>
+                                        <label for="description">Description</label>
+                                        <input type="text" class="form-control" id="description" name="description" placeholder="Task description" required>
+                                    </div>
+                                    <div>
+                                        <label for="assignedto">Assigned to:</label>
+                                        <input type="text" class="form-control" id="assignedto" name="assignedto" placeholder="Teammates" required>
+                                    </div>
+                                    <div>
+                                        <label for="duedate">Due date:</label>
+                                        <input type="date" class="form-control" id="duedate" name="duedate">
+                                    </div>
+
+                                    <div>
+                                        <label for="status">Status:</label>
+                                        <select id="status" class="form-control" name="Please Select: " onchange="progressBarShow('progressBar', this)">
+                                            <option value="" >Please Select </option>
+                                            <option value="To Do">To Do </option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Review"> Review </option>
+                                            <option value="Done"> Done </option>
+                                        </select>
+                                    </div>
+                                    <div id="progressBar">
+                                        <label for="progress">Progress (between 0% and 100%):</label>
+                                        <input type="range" id="progress" name="progress" min="0" max="100" oninput="this.nextElementSibling.value = this.value">
+                                        <output id="showProgressValue"></output>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-color" data-dismiss="modal">Close</button>
+                                    <button type="reset" class="btn btn-color">Reset</button>
+                                    <button type="submit" id="submitForm" class="btn btn-color">Add Task</button>
+                                    <button type="submit" id="" class="btn btn-color updateBtn">Update</button>
+                                </div>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+                    <!-- Modal end -->
+                    
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Team 1 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" id="taskAddButton" class=" btn-primary  btn-sm" 
+                    data-toggle="modal" data-target="#exampleModal">
+                <i class="fas fa-plus-circle fa-2x"></i>
+            </button>
+        </div>
+
+
+        <!-- sorting CDN -->
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+        <!--JQuery CDN-->
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+        <!---Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        <script src="js/sortable.min.js"></script>
+        <script src="js/sortable.js"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+        <script src="js/index.js"></script>
+        
+        
+       
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+         <!-- Latest compiled and minified JavaScript -->
+        <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+        <!-- Latest compiled and minified Locales -->
+        <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+
+        
+    </body>
+</html>
