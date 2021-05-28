@@ -1,12 +1,12 @@
 id,name,description,assignedto,duedate,status
-=>,Task Manager,Credit To,Team 1@FEWD1,2021-05-28,To Do
+=>,Task Manager,Credit To,Team 1@FEWD1,2021-05-28,In Progress
 A,Task Functions & LoginPage,CRUD functions,Victor,2021-05-28,To Do
-B,IndexPage,Re-model and components,Roy,2021-05-28,To Do
-C,RWS and CSS-Styling,Login Validation,Salin,2021-05-28,To Do
-
-
+B,IndexPage,Re-model and components,Roy,2021-05-28,Done
+C,RWS and CSS-Styling,Login Validation,Salin,2021-05-28,Review
 0,養蟹,記錄水質數據,Kevin,2022-05-19,In Progress
-1,web design,startup company, Jesus,2021-04-02,To Do
-2,toy design, car structure ,Jesus,2021-04-02,Review
-3,UX design, complain solving,Jesus,2021-05-06,Done
-4,養蟹,記錄水質數據,Kevin,2022-05-19,In Progress
+1,Internet Security Maintenance,Conducting Penertration Tests ,Kevin Mitnick,2021-06-02,To Do
+2,Basketing Training,1500 shots per day ,Lebron James,2021-04-02,Review
+3,UX Design Wireframe, layout for a phone app,Steve Krug,2021-05-06, Done
+4,Hang Out with Friends, meet at Kurbrick, Myself, 2021-06-06, To Do
+5,Medical Appointments, physical therapy, Mom, 2021-05-29, In Progress
+6, Find a girlfriend, ERROR 404, ME, 2021-02-29, Done
